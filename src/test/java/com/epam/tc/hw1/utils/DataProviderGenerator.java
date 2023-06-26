@@ -9,8 +9,8 @@ public class DataProviderGenerator {
 
     @DataProvider(name = "longValuesForSum")
     public static Object[][] generateLongValuesForSumOperation() {
-        long longNum1 = RANDOM.nextLong()/2;
-        long longNum2 = RANDOM.nextLong()/2;
+        long longNum1 = RANDOM.nextLong() / 2;
+        long longNum2 = RANDOM.nextLong() / 2;
         return new Object[][] {
                 {0, 0, 0},
                 {115L, 76L, 191L},
@@ -29,8 +29,8 @@ public class DataProviderGenerator {
 
     @DataProvider(name = "longValuesForSub")
     public static Object[][] generateLongValuesForSubOperation() {
-        long longNum1 = RANDOM.nextLong()/2;
-        long longNum2 = RANDOM.nextLong()/2;
+        long longNum1 = RANDOM.nextLong() / 2;
+        long longNum2 = RANDOM.nextLong() / 2;
         return new Object[][] {
                 {0, 0, 0},
                 {115L, 76L, 39L},

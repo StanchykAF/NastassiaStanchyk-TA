@@ -2,25 +2,19 @@ package com.epam.tc.hw1.tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.epam.tat.module4.Calculator;
 import com.epam.tc.hw1.utils.DataProviderGenerator;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import lombok.extern.log4j.Log4j2;
+import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 
-public class SumTests {
-
-    private Calculator calculator = null;
-
-    @BeforeTest
-    public void initialization() {
-        calculator = new Calculator();
-    }
+@Log4j2
+public class SumTests extends BaseTest {
 
     @Test(description = "Test sum operation with valid long values",
             dataProviderClass = DataProviderGenerator.class,
             dataProvider = "longValuesForSum")
     public void testSumOperationWithLongValues(long a, long b, long expectedResult) {
+        log.info("Addition test for long values " + a + " and " + b);
         long actualResult = calculator.sum(a, b);
         assertThat(actualResult).isEqualTo(expectedResult);
     }
@@ -29,6 +23,7 @@ public class SumTests {
             dataProviderClass = DataProviderGenerator.class,
             dataProvider = "doubleValuesForSum")
     public void testSumOperationWithDoubleValues(double a, double b, double expectedResult) {
+        log.info("Addition test for double values " + a + " and " + b);
         double actualResult = calculator.sum(a, b);
         assertThat(actualResult).isEqualTo(expectedResult);
     }
@@ -37,11 +32,8 @@ public class SumTests {
     @Test(description = "Test sum operation with max long values",
             expectedExceptions = ArithmeticException.class)
     public void testSumOperationWithMaxValues() {
-        calculator.sum(Long.MAX_VALUE, Long.MAX_VALUE);
-    }
-
-    @AfterTest(alwaysRun = true)
-    public void tearDown() {
-        calculator = null;
+        log.info("Addition test for long max values");
+        Assertions.assertThatExceptionOfType(ArithmeticException.class)
+                .isThrownBy(() -> calculator.sum(Long.MAX_VALUE, Long.MAX_VALUE));
     }
 }
