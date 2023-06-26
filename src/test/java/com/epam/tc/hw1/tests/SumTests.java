@@ -29,8 +29,7 @@ public class SumTests extends BaseTest {
     }
 
     // Issue: long overflowed, should be handled
-    @Test(description = "Test sum operation with max long values",
-            expectedExceptions = ArithmeticException.class)
+    @Test(description = "Test sum operation with max long values")
     public void testSumOperationWithMaxValues() {
         log.info("Addition test for long max values");
         Assertions.assertThatExceptionOfType(ArithmeticException.class)
