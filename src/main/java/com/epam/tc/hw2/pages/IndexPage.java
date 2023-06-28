@@ -47,6 +47,8 @@ public class IndexPage extends BasePage {
     @FindBy(css = ".sidebar-menu > li > a > span")
     private List<WebElement> leftMenu;
 
+    // HEADER
+
     public IndexPage(WebDriver driver) {
         super(driver);
     }

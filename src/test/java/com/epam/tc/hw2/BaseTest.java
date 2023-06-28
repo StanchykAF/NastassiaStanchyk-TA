@@ -23,6 +23,13 @@ public class BaseTest {
     protected List<String> leftSideBarMenu = Arrays
             .asList("Home", "Contact form", "Service", "Metals & Colors", "Elements packs");
 
+    protected List<String> expectedLogRows = Arrays.asList(
+            "Colors: value changed to Yellow",
+            "metal: value changed to Selen",
+            "Wind: condition changed to true",
+            "Water: condition changed to true"
+    );
+
     @BeforeMethod()
     public void browserSetup() {
         log.info("Browser setup");
