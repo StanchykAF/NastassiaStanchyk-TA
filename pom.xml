@@ -138,10 +138,35 @@
 
     <profiles>
         <profile>
+            <id>additionAndSubtractionTests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <testng.suite.file>${testng.configs.path}/calculatorSumAndSubTests.xml</testng.suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>multiplyingAndDivisionTests</id>
+            <properties>
+                <testng.suite.file>${testng.configs.path}/calculatorMultAndDivTests.xml</testng.suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>calculatorTests</id>
+            <properties>
+                <testng.suite.file>${testng.configs.path}/calculatorAllTests.xml</testng.suite.file>
+            </properties>
+        </profile>
+      
+      <profile>
             <id>seleniumBaseTests</id>
             <properties>
                 <testng.suite.file>${testng.configs.path}/seleniumBaseTests.xml</testng.suite.file>
             </properties>
         </profile>
     </profiles>
+
 </project>
