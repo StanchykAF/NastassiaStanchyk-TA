@@ -3,13 +3,11 @@ package com.epam.tc.hw3.pom.elements;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Getter;
-import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-@Log4j2
 @Getter
 public class Header {
 
@@ -30,7 +28,6 @@ public class Header {
     }
 
     public List<String> getHeaderMenusNames() {
-        log.info("Get names of header menus");
         return headerMenus.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 }

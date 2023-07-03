@@ -1,6 +1,7 @@
 package com.epam.tc.hw3.pom.elements;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,5 +16,10 @@ public class LogInfoPanel {
 
     public LogInfoPanel(WebDriver driver) {
         PageFactory.initElements(driver, this);
+    }
+
+    public List<String> getLogRows() {
+        return logRows.stream().map(WebElement::getText).collect(
+                Collectors.toList());
     }
 }

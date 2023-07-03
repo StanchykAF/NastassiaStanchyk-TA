@@ -18,4 +18,8 @@ public class Frame {
     public Frame(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
+
+    public boolean isFrameButtonExist() {
+        return frameButton.isDisplayed();
+    }
 }
