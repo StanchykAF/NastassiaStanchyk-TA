@@ -57,7 +57,7 @@
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>${assertj-core.version}</version>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -139,9 +139,6 @@
     <profiles>
         <profile>
             <id>additionAndSubtractionTests</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <testng.suite.file>${testng.configs.path}/calculatorSumAndSubTests.xml</testng.suite.file>
             </properties>
@@ -160,11 +157,21 @@
                 <testng.suite.file>${testng.configs.path}/calculatorAllTests.xml</testng.suite.file>
             </properties>
         </profile>
-      
-      <profile>
+
+        <profile>
             <id>seleniumBaseTests</id>
             <properties>
                 <testng.suite.file>${testng.configs.path}/seleniumBaseTests.xml</testng.suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>seleniumPageObjects</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                    <testng.suite.file>${testng.configs.path}/seleniumPageObjects.xml</testng.suite.file>
             </properties>
         </profile>
     </profiles>
