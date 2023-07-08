@@ -139,9 +139,6 @@
     <profiles>
         <profile>
             <id>additionAndSubtractionTests</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <testng.suite.file>${testng.configs.path}/calculatorSumAndSubTests.xml</testng.suite.file>
             </properties>
@@ -170,6 +167,9 @@
 
         <profile>
             <id>seleniumPageObjects</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                     <testng.suite.file>${testng.configs.path}/seleniumPageObjects.xml</testng.suite.file>
             </properties>

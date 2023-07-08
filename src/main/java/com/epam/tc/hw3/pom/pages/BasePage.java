@@ -9,6 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 @Getter
 public class BasePage {
 
+    public static final String BASE_URL = "https://jdi-testing.github.io/jdi-light/";
+
     protected WebDriver driver;
     protected Header header;
     protected LeftSection leftSection;
@@ -19,17 +21,4 @@ public class BasePage {
         leftSection = new LeftSection(driver);
         PageFactory.initElements(driver, this);
     }
-
-    public void switchToDefaultContent() {
-        driver.switchTo().defaultContent();
-    }
-
-    public String getPageTitle() {
-        return driver.getTitle();
-    }
-
-    public String getUserName() {
-        return header.getUserName().getText();
-    }
-
 }

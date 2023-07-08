@@ -1,7 +1,5 @@
 package com.epam.tc.hw3.steps;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
 import com.epam.tc.hw3.models.DifferentElementsCheckbox;
 import com.epam.tc.hw3.models.DifferentElementsDropdown;
 import com.epam.tc.hw3.models.DifferentElementsRadio;
@@ -20,6 +18,12 @@ public class DifferentElementsPageSteps extends BaseSteps {
         super(driver);
         this.driver = driver;
         differentElementsPage = new DifferentElementsPage(driver);
+    }
+
+    public DifferentElementsPageSteps openPage() {
+        log.info("Open Different elements page");
+        super.openPage(DifferentElementsPage.PAGE_URL);
+        return this;
     }
 
     public DifferentElementsPageSteps clickCheckbox(DifferentElementsCheckbox checkbox) {
@@ -55,13 +59,8 @@ public class DifferentElementsPageSteps extends BaseSteps {
         return this;
     }
 
-    public DifferentElementsPageSteps checkLog(List<String> expectedLogRows) {
-        log.info("Check Log panel");
-        List<String> actualLogRows = differentElementsPage.getLogInfoPanel().getLogRows();
-        assertThat(actualLogRows.stream().allMatch(actualRow -> expectedLogRows.stream().anyMatch(actualRow::contains)))
-                .withFailMessage("Actual log rows " + actualLogRows + " don't match with expected log rows "
-                        + expectedLogRows)
-                .isTrue();
-        return this;
+    public List<String> getLogRows() {
+        log.info("Get Log panel");
+        return differentElementsPage.getLogInfoPanel().getLogRows();
     }
 }

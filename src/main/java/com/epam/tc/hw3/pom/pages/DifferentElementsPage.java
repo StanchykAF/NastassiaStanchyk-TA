@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 @Getter
 public class DifferentElementsPage extends BasePage {
 
+    public static final String PAGE_URL = "different-elements.html";
+
     private ConditionsRow conditionsRow;
     private MetalsRow metalsRow;
     private ColorsDropdown colorsDropdown;

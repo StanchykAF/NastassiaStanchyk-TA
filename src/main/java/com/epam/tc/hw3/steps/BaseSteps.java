@@ -1,7 +1,5 @@
 package com.epam.tc.hw3.steps;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.epam.tc.hw3.models.ServiceDropDownMenu;
 import com.epam.tc.hw3.pom.elements.ServiceMenu;
 import com.epam.tc.hw3.pom.pages.BasePage;
@@ -25,6 +23,10 @@ public class BaseSteps {
         basePage = new BasePage(driver);
     }
 
+    protected void openPage(String url) {
+        driver.navigate().to(BasePage.BASE_URL + url);
+    }
+
     protected WebDriverWait getNewWait() {
         return new WebDriverWait(driver, Duration.ofSeconds(WAIT_TIMEOUT_SECONDS));
     }
@@ -35,32 +37,28 @@ public class BaseSteps {
 
     public BaseSteps switchToOriginalWindow() {
         log.info("Switch to default content");
-        basePage.switchToDefaultContent();
+        driver.switchTo().defaultContent();
         return this;
     }
 
-    public BaseSteps checkPageTitle(String expectedTitle) {
-        log.info("Check page title");
-        assertThat(basePage.getPageTitle()).isEqualTo(expectedTitle);
-        return this;
+    public String getPageTitle() {
+        log.info("Get page title");
+        return driver.getTitle();
     }
 
-    public BaseSteps checkUsername(String expectedUsername) {
-        log.info("Check user name");
-        assertThat(basePage.getUserName()).isEqualTo(expectedUsername);
-        return this;
+    public String getUsername() {
+        log.info("Get user name");
+        return basePage.getHeader().getUserName().getText();
     }
 
-    public BaseSteps checkHeaderMenusNames(List<String> expectedMenusNames) {
-        log.info("Check names of header menus");
-        assertThat(basePage.getHeader().getHeaderMenusNames()).isEqualTo(expectedMenusNames);
-        return this;
+    public List<String> getHeaderMenusNames() {
+        log.info("Get names of header menus");
+        return basePage.getHeader().getHeaderMenusNames();
     }
 
-    public BaseSteps checkLeftSectionMenusNames(List<String> expectedMenusNames) {
-        log.info("Check names of left panel menus");
-        assertThat(basePage.getLeftSection().getLeftSidebarMenuNames()).isEqualTo(expectedMenusNames);
-        return this;
+    public List<String> getLeftSectionMenusNames() {
+        log.info("Get names of left panel menus");
+        return basePage.getLeftSection().getLeftSidebarMenuNames();
     }
 
     public BaseSteps clickServiceDropdownMenuElement(ServiceDropDownMenu menuElement) {
