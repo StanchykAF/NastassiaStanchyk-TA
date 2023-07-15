@@ -18,6 +18,9 @@ public class ServiceMenu {
     @FindBy(xpath = "//ul[@class='dropdown-menu' or @class='sub']//*[contains(text(), 'Search')]")
     private WebElement search;
 
+    @FindBy(xpath = "//ul[@class='dropdown-menu' or @class='sub']//*[contains(text(), 'User Table')]")
+    private WebElement userTable;
+
     @FindBy(xpath = "//ul[@class='dropdown-menu' or @class='sub']//*[contains(text(), 'Different elements')]")
     private WebElement differentElements;
 

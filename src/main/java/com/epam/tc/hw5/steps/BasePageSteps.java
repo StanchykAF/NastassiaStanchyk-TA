@@ -41,6 +41,9 @@ public class BasePageSteps extends BaseSteps {
             case SEARCH:
                 waitVisibilityOf(serviceMenu.getSearch()).click();
                 break;
+            case USER_TABLE:
+                waitVisibilityOf(serviceMenu.getUserTable()).click();
+                break;
             case DIFFERENT_ELEMENTS:
                 waitVisibilityOf(serviceMenu.getDifferentElements()).click();
                 break;
