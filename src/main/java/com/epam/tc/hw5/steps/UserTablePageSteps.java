@@ -9,14 +9,15 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.util.List;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 
+@Log4j2
 public class UserTablePageSteps {
 
-    // TODO: остался тест раннер, xml файл и профиль мавена. И почистить файлы от коментов. И все. Ты молодец,
-    //  почти справилась. Чуть-чуть осталось
     @And("{int} Number Type Dropdowns should be displayed on Users Table on User Table Page")
     public void numberTypeDropdownsShouldBeDisplayed(int expectedDropdownCount) {
+        log.info("Verify number of Type dropdowns");
         int actualDropdownCount = new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class))
                 .getTypeDropdowns().size();
         assertThat(actualDropdownCount).isEqualTo(expectedDropdownCount);
@@ -24,6 +25,7 @@ public class UserTablePageSteps {
 
     @And("{int} Usernames should be displayed on Users Table on User Table Page")
     public void usernamesShouldBeDisplayed(int expectedUsernameCount) {
+        log.info("Verify number of Usernames");
         int actualUsernameCount = new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class))
                 .getUsernames().size();
         assertThat(actualUsernameCount).isEqualTo(expectedUsernameCount);
@@ -31,6 +33,7 @@ public class UserTablePageSteps {
 
     @And("{int} Description texts under images should be displayed on Users Table on User Table Page")
     public void descriptionTextsUnderImagesShouldBeDisplayed(int expectedDescriptionTextCount) {
+        log.info("Verify number of Description texts");
         int actualDescriptionTextCount = new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class))
                 .getDescriptionTexts().size();
         assertThat(actualDescriptionTextCount).isEqualTo(expectedDescriptionTextCount);
@@ -38,6 +41,7 @@ public class UserTablePageSteps {
 
     @And("{int} checkboxes should be displayed on Users Table on User Table Page")
     public void checkboxesShouldBeDisplayed(int expectedCheckboxCount) {
+        log.info("Verify number of Checkboxes");
         int actualCheckboxCount = new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class))
                 .getCheckboxes().size();
         assertThat(actualCheckboxCount).isEqualTo(expectedCheckboxCount);
@@ -45,6 +49,7 @@ public class UserTablePageSteps {
 
     @And("User table should contain following values:")
     public void userTableShouldContainFollowingValues(DataTable dataTable) {
+        log.info("Verify that User Table contains certain values");
         List<List<String>> expectedTableData = dataTable.asLists(String.class).subList(1, dataTable.asLists().size());
         UserTablePage userTablePage = new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class));
         for (int i = 0; i < expectedTableData.size(); i++) {
@@ -61,6 +66,7 @@ public class UserTablePageSteps {
 
     @And("^droplist should contain values in column Type for user (.*)$")
     public void droplistShouldContainValuesInColumnTypeForUser(String username, DataTable dataTable) {
+        log.info("Verify that dropdown contains certain values");
         List<String> expectedDropdownOptions = dataTable.asList(String.class).subList(1, dataTable.asLists().size());
         int rowIndex = findRowIndexByUsername(username);
         List<String> actualDropdownOptions = new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class))
@@ -70,7 +76,8 @@ public class UserTablePageSteps {
     }
 
     @When("I select 'vip' checkbox for {string}")
-    public void iSelectVipCheckboxFor(String username) {
+    public void selectVipCheckboxFor(String username) {
+        log.info("Select 'vip' checkbox for user " + username);
         int rowIndex = findRowIndexByUsername(username);
         new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class))
                 .getCheckboxes().get(rowIndex).click();
@@ -78,7 +85,7 @@ public class UserTablePageSteps {
 
     @Then("{int} log row has {string} text in log section")
     public void logRowHasTextInLogSection(int expectedRowsNumber, String expectedString) {
-//        log.info("Verifying row in Log");
+        log.info("Verify row in Log");
         List<String> logRows = new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class))
                 .getLogInfoPanel()
                 .getLogRows();

@@ -210,11 +210,18 @@
 
         <profile>
             <id>allure</id>
+            <properties>
+                <testng.suite.file>${testng.configs.path}/allure.xml</testng.suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>cucumber</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <testng.suite.file>${testng.configs.path}/allure.xml</testng.suite.file>
+                <testng.suite.file>${testng.configs.path}/cucumber.xml</testng.suite.file>
             </properties>
         </profile>
     </profiles>

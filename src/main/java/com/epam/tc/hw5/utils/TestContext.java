@@ -21,8 +21,8 @@ public class TestContext {
         context.put(key, value);
     }
 
-    public <T> T get(String key, Class<T> tClass) {
-        return tClass.cast(context.get(key));
+    public <T> T get(String key, Class<T> ttClass) {
+        return ttClass.cast(context.get(key));
     }
 
     public void clear() {

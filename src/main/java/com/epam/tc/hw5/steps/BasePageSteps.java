@@ -22,13 +22,13 @@ public class BasePageSteps extends BaseSteps {
     }
 
     @When("I click on {string} button in Header")
-    public void iClickOnButtonInHeader(String menu) {
+    public void clickOnButtonInHeader(String menu) {
         log.info("Click on '" + menu + "' dropdown menu");
         new BasePage(TestContext.getInstance().get("driver", WebDriver.class)).getHeader().getServiceMenu().click();
     }
 
     @And("I click on {serviceDropDownMenu} button in Service dropdown")
-    public void iClickOnButtonInServiceDropdown(ServiceDropDownMenu menuElement) {
+    public void clickOnButtonInServiceDropdown(ServiceDropDownMenu menuElement) {
         log.info("Click SERVICE dropdown menu element '" + menuElement + "'");
         ServiceMenu serviceMenu = new ServiceMenu(TestContext.getInstance().get("driver", WebDriver.class));
         switch (menuElement) {

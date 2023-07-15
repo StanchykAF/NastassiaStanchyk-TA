@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="BDD tests" verbose="1" >
+    <test name="BDD tests"   >
+        <packages>
+            <package name="com.epam.tc.hw5.*" />
+        </packages>
+    </test>
+</suite>

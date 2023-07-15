@@ -16,7 +16,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
 @Log4j2
-public class DifferentElementsPageSteps extends BaseSteps{
+public class DifferentElementsPageSteps extends BaseSteps {
 
     @ParameterType(".*")
     public DifferentElementsCheckbox differentElementsCheckbox(String value) {
@@ -29,7 +29,7 @@ public class DifferentElementsPageSteps extends BaseSteps{
     }
 
     @When("I select checkbox {differentElementsCheckbox} on Different Elements Page")
-    public void iSelectCheckboxOnDifferentElementsPage(DifferentElementsCheckbox checkbox) {
+    public void selectCheckboxOnDifferentElementsPage(DifferentElementsCheckbox checkbox) {
         log.info("Click '" + checkbox + "' checkbox");
         DifferentElementsPage differentElementsPage = new DifferentElementsPage(
                 TestContext.getInstance().get("driver", WebDriver.class));
@@ -46,7 +46,7 @@ public class DifferentElementsPageSteps extends BaseSteps{
     }
 
     @And("I select radio {differentElementsRadio} on Different Elements Page")
-    public void iSelectRadioOnDifferentElementsPage(DifferentElementsRadio radio) {
+    public void selectRadioOnDifferentElementsPage(DifferentElementsRadio radio) {
         log.info("Select '" + radio + "' radio");
         DifferentElementsPage differentElementsPage = new DifferentElementsPage(
                 TestContext.getInstance().get("driver", WebDriver.class));
@@ -60,7 +60,7 @@ public class DifferentElementsPageSteps extends BaseSteps{
     }
 
     @And("^I select (.*) in dropdown on Different Elements Page$")
-    public void iSelectInDropdownOnDifferentElementsPage(String option) {
+    public void selectInDropdownOnDifferentElementsPage(String option) {
         log.info("Select '" + option + "' in dropdown");
         DifferentElementsPage differentElementsPage = new DifferentElementsPage(
                 TestContext.getInstance().get("driver", WebDriver.class));

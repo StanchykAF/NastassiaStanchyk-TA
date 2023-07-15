@@ -13,8 +13,6 @@ import org.openqa.selenium.WebDriver;
 @Log4j2
 public class IndexPageSteps {
 
-    // TODO: переведи степы из hw4 с использованием TestContext. Там все должно быть просто, я в тебя верю. Просто
-    //  сделай это, пожалуйста
     @Given("I open JDI GitHub site")
     public void openPage() {
         log.info("Open Index page");
@@ -22,7 +20,7 @@ public class IndexPageSteps {
     }
 
     @And("I login as user {string}")
-    public void iLoginAsUser(String userName) {
+    public void loginAsUser(String userName) {
         log.info("Log in as user " + userName);
         IndexPage indexPage = new IndexPage(TestContext.getInstance().get("driver", WebDriver.class));
         User user = TestContext.getInstance().get("loginUser", User.class);
