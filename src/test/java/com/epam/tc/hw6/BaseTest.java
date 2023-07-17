@@ -46,7 +46,7 @@ public class BaseTest {
     public void setup(@Optional("false") final boolean isLocal, final String hubAddress, final String browserName) {
         log.info("Browser setup");
         try {
-            driver = new DriverFabric().getWebdriver(isLocal, hubAddress, browserName);
+            driver = DriverFabric.getWebdriver(isLocal, hubAddress, browserName);
             driver.manage().window().maximize();
         } catch (MalformedURLException e) {
             log.error("A malformed URL has occurred: " + e);

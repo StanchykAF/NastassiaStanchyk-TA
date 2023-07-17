@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
 import lombok.NonNull;
+import lombok.experimental.UtilityClass;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+@UtilityClass
 @Log4j2
 public class DriverFabric {
 
