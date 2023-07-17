@@ -2,12 +2,8 @@ package com.epam.tc.hw5.steps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.epam.tc.hw5.models.DifferentElementsCheckbox;
-import com.epam.tc.hw5.models.DifferentElementsRadio;
 import com.epam.tc.hw5.pom.pages.DifferentElementsPage;
 import com.epam.tc.hw5.utils.TestContext;
-import io.cucumber.java.ParameterType;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.util.List;
@@ -18,48 +14,23 @@ import org.openqa.selenium.support.ui.Select;
 @Log4j2
 public class DifferentElementsPageSteps extends BaseSteps {
 
-    @ParameterType(".*")
-    public DifferentElementsCheckbox differentElementsCheckbox(String value) {
-        return DifferentElementsCheckbox.valueOf(value.toUpperCase().replace(" ", "_"));
-    }
-
-    @ParameterType(".*")
-    public DifferentElementsRadio differentElementsRadio(String value) {
-        return DifferentElementsRadio.valueOf(value.toUpperCase().replace(" ", "_"));
-    }
-
-    @When("I select checkbox {differentElementsCheckbox} on Different Elements Page")
-    public void selectCheckboxOnDifferentElementsPage(DifferentElementsCheckbox checkbox) {
+    @When("^I select checkbox (.*) on Different Elements Page$")
+    public void selectCheckboxOnDifferentElementsPage(String checkbox) {
         log.info("Click '" + checkbox + "' checkbox");
         DifferentElementsPage differentElementsPage = new DifferentElementsPage(
                 TestContext.getInstance().get("driver", WebDriver.class));
-        switch (checkbox) {
-            case WATER:
-                waitVisibilityOf(differentElementsPage.getConditionsRow().getWaterCheckbox()).click();
-                break;
-            case WIND:
-                waitVisibilityOf(differentElementsPage.getConditionsRow().getWindCheckbox()).click();
-                break;
-            default:
-                throw new RuntimeException("Something went wrong!");
-        }
+        waitVisibilityOf(differentElementsPage.getConditionsRow().getConditionsRowElement(checkbox)).click();
     }
 
-    @And("I select radio {differentElementsRadio} on Different Elements Page")
-    public void selectRadioOnDifferentElementsPage(DifferentElementsRadio radio) {
+    @When("^I select radio (.*) on Different Elements Page$")
+    public void selectRadioOnDifferentElementsPage(String radio) {
         log.info("Select '" + radio + "' radio");
         DifferentElementsPage differentElementsPage = new DifferentElementsPage(
                 TestContext.getInstance().get("driver", WebDriver.class));
-        switch (radio) {
-            case SELEN:
-                waitVisibilityOf(differentElementsPage.getMetalsRow().getSelenRadio()).click();
-                break;
-            default:
-                throw new RuntimeException("Something went wrong!");
-        }
+        waitVisibilityOf(differentElementsPage.getMetalsRow().getMetalsRowElement(radio)).click();
     }
 
-    @And("^I select (.*) in dropdown on Different Elements Page$")
+    @When("^I select (.*) in dropdown on Different Elements Page$")
     public void selectInDropdownOnDifferentElementsPage(String option) {
         log.info("Select '" + option + "' in dropdown");
         DifferentElementsPage differentElementsPage = new DifferentElementsPage(

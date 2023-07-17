@@ -1,6 +1,7 @@
 package com.epam.tc.hw5.pom.pages;
 
 import com.epam.tc.hw5.pom.elements.LogInfoPanel;
+import com.epam.tc.hw5.utils.TestContext;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Getter;
@@ -19,19 +20,19 @@ public class UserTablePage extends BasePage {
     @FindBy(css = "#user-table tbody tr")
     private List<WebElement> tableRows;
 
-    @FindBy(css = "#user-table tbody tr td:nth-child(1)")
+    @FindBy(css = "#user-table tbody tr td:first-child")
     private List<WebElement> rowNumber;
 
-    @FindBy(css = "#user-table tbody tr td:nth-child(2) select")
+    @FindBy(css = "#user-table tbody tr td select")
     private List<WebElement> typeDropdowns;
 
-    @FindBy(css = "#user-table tbody tr td:nth-child(3) a")
+    @FindBy(css = "#user-table tbody tr td a")
     private List<WebElement> usernames;
 
-    @FindBy(css = "#user-table tbody tr td:nth-child(4) span")
+    @FindBy(css = "#user-table tbody tr td span")
     private List<WebElement> descriptionTexts;
 
-    @FindBy(css = "#user-table tbody tr td:nth-child(4) input[type='checkbox']")
+    @FindBy(css = "#user-table tbody tr td input[type='checkbox']")
     private List<WebElement> checkboxes;
 
     public UserTablePage(WebDriver driver) {
@@ -68,5 +69,15 @@ public class UserTablePage extends BasePage {
         dropdown.click();
         List<WebElement> options = dropdown.findElements(By.tagName("option"));
         return options.stream().map(WebElement::getText).collect(Collectors.toList());
+    }
+
+    public int findRowIndexByUsername(String username) {
+        UserTablePage userTablePage = new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class));
+        for (int i = 0; i < userTablePage.getRowCount(); i++) {
+            if (userTablePage.getUsername(i).equals(username)) {
+                return i;
+            }
+        }
+        throw new RuntimeException("User with username '" + username + "' not found in the table");
     }
 }

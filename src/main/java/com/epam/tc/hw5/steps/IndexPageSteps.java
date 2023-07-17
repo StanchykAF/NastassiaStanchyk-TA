@@ -4,7 +4,6 @@ import com.epam.tc.hw5.models.User;
 import com.epam.tc.hw5.pom.pages.BasePage;
 import com.epam.tc.hw5.pom.pages.IndexPage;
 import com.epam.tc.hw5.utils.TestContext;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import lombok.extern.log4j.Log4j2;
@@ -19,7 +18,7 @@ public class IndexPageSteps {
         TestContext.getInstance().get("driver", WebDriver.class).navigate().to(BasePage.BASE_URL + IndexPage.PAGE_URL);
     }
 
-    @And("I login as user {string}")
+    @When("I login as user {string}")
     public void loginAsUser(String userName) {
         log.info("Log in as user " + userName);
         IndexPage indexPage = new IndexPage(TestContext.getInstance().get("driver", WebDriver.class));

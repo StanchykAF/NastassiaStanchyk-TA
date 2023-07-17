@@ -24,7 +24,9 @@ public class DriverSingletone {
     }
 
     public static void closeDriver() {
-        driver.quit();
-        driver = null;
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
     }
 }

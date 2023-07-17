@@ -1,33 +1,21 @@
 package com.epam.tc.hw5.pom.elements;
 
-import lombok.Getter;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-@Getter
 public class ServiceMenu {
 
-    @FindBy(xpath = "//ul[@class='dropdown-menu' or @class='sub']//*[contains(text(), 'Support')]")
-    private WebElement support;
-
-    @FindBy(xpath = "//ul[@class='dropdown-menu' or @class='sub']//*[contains(text(), 'Dates')]")
-    private WebElement dates;
-
-    @FindBy(xpath = "//ul[@class='dropdown-menu' or @class='sub']//*[contains(text(), 'Search')]")
-    private WebElement search;
-
-    @FindBy(xpath = "//ul[@class='dropdown-menu' or @class='sub']//*[contains(text(), 'User Table')]")
-    private WebElement userTable;
-
-    @FindBy(xpath = "//ul[@class='dropdown-menu' or @class='sub']//*[contains(text(), 'Different elements')]")
-    private WebElement differentElements;
-
-    @FindBy(xpath = "//ul[@class='dropdown-menu' or @class='sub']//*[contains(text(), 'Performance')]")
-    private WebElement performance;
+    private WebDriver driver;
+    private final String serviceMenuElement = "//ul[@class='dropdown-menu' or @class='sub']//*[contains(text(), '%s')]";
 
     public ServiceMenu(WebDriver driver) {
+        this.driver = driver;
         PageFactory.initElements(driver, this);
+    }
+
+    public WebElement getServiceMenuElement(String elementName) {
+        return driver.findElement(By.xpath(String.format(serviceMenuElement, elementName)));
     }
 }

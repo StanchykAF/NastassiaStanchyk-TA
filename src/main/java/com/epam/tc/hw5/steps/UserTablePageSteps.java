@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.epam.tc.hw5.pom.pages.UserTablePage;
 import com.epam.tc.hw5.utils.TestContext;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.util.List;
@@ -15,7 +14,7 @@ import org.openqa.selenium.WebDriver;
 @Log4j2
 public class UserTablePageSteps {
 
-    @And("{int} Number Type Dropdowns should be displayed on Users Table on User Table Page")
+    @Then("{int} Number Type Dropdowns should be displayed on Users Table on User Table Page")
     public void numberTypeDropdownsShouldBeDisplayed(int expectedDropdownCount) {
         log.info("Verify number of Type dropdowns");
         int actualDropdownCount = new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class))
@@ -23,7 +22,7 @@ public class UserTablePageSteps {
         assertThat(actualDropdownCount).isEqualTo(expectedDropdownCount);
     }
 
-    @And("{int} Usernames should be displayed on Users Table on User Table Page")
+    @Then("{int} Usernames should be displayed on Users Table on User Table Page")
     public void usernamesShouldBeDisplayed(int expectedUsernameCount) {
         log.info("Verify number of Usernames");
         int actualUsernameCount = new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class))
@@ -31,7 +30,7 @@ public class UserTablePageSteps {
         assertThat(actualUsernameCount).isEqualTo(expectedUsernameCount);
     }
 
-    @And("{int} Description texts under images should be displayed on Users Table on User Table Page")
+    @Then("{int} Description texts under images should be displayed on Users Table on User Table Page")
     public void descriptionTextsUnderImagesShouldBeDisplayed(int expectedDescriptionTextCount) {
         log.info("Verify number of Description texts");
         int actualDescriptionTextCount = new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class))
@@ -39,7 +38,7 @@ public class UserTablePageSteps {
         assertThat(actualDescriptionTextCount).isEqualTo(expectedDescriptionTextCount);
     }
 
-    @And("{int} checkboxes should be displayed on Users Table on User Table Page")
+    @Then("{int} checkboxes should be displayed on Users Table on User Table Page")
     public void checkboxesShouldBeDisplayed(int expectedCheckboxCount) {
         log.info("Verify number of Checkboxes");
         int actualCheckboxCount = new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class))
@@ -47,7 +46,7 @@ public class UserTablePageSteps {
         assertThat(actualCheckboxCount).isEqualTo(expectedCheckboxCount);
     }
 
-    @And("User table should contain following values:")
+    @Then("User table should contain following values:")
     public void userTableShouldContainFollowingValues(DataTable dataTable) {
         log.info("Verify that User Table contains certain values");
         List<List<String>> expectedTableData = dataTable.asLists(String.class).subList(1, dataTable.asLists().size());
@@ -64,23 +63,22 @@ public class UserTablePageSteps {
         }
     }
 
-    @And("^droplist should contain values in column Type for user (.*)$")
+    @Then("^droplist should contain values in column Type for user (.*)$")
     public void droplistShouldContainValuesInColumnTypeForUser(String username, DataTable dataTable) {
         log.info("Verify that dropdown contains certain values");
         List<String> expectedDropdownOptions = dataTable.asList(String.class).subList(1, dataTable.asLists().size());
-        int rowIndex = findRowIndexByUsername(username);
-        List<String> actualDropdownOptions = new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class))
-                .getTypeDropdownOptions(rowIndex);
-
+        UserTablePage userTablePage = new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class));
+        int rowIndex = userTablePage.findRowIndexByUsername(username);
+        List<String> actualDropdownOptions = userTablePage.getTypeDropdownOptions(rowIndex);
         assertThat(actualDropdownOptions).containsExactlyElementsOf(expectedDropdownOptions);
     }
 
     @When("I select 'vip' checkbox for {string}")
     public void selectVipCheckboxFor(String username) {
         log.info("Select 'vip' checkbox for user " + username);
-        int rowIndex = findRowIndexByUsername(username);
-        new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class))
-                .getCheckboxes().get(rowIndex).click();
+        UserTablePage userTablePage = new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class));
+        int rowIndex = userTablePage.findRowIndexByUsername(username);
+        userTablePage.getCheckboxes().get(rowIndex).click();
     }
 
     @Then("{int} log row has {string} text in log section")
@@ -92,15 +90,5 @@ public class UserTablePageSteps {
 
         assertThat(logRows.size()).isEqualTo(expectedRowsNumber);
         assertThat(logRows).anyMatch(row -> row.contains(expectedString));
-    }
-
-    private int findRowIndexByUsername(String username) {
-        UserTablePage userTablePage = new UserTablePage(TestContext.getInstance().get("driver", WebDriver.class));
-        for (int i = 0; i < userTablePage.getRowCount(); i++) {
-            if (userTablePage.getUsername(i).equals(username)) {
-                return i;
-            }
-        }
-        throw new RuntimeException("User with username '" + username + "' not found in the table");
     }
 }

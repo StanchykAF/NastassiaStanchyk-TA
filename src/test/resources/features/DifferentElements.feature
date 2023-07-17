@@ -5,7 +5,7 @@ Feature: Different Elements Page
     Given I open JDI GitHub site
     And I login as user "Roman Iovlev"
     When I click on "Service" button in Header
-    And I click on Different Elements button in Service dropdown
+    And I click on Different elements button in Service dropdown
     Then "Different Elements" page should be opened
 
     When I select checkbox Water on Different Elements Page
