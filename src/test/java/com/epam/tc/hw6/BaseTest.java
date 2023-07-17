@@ -1,17 +1,21 @@
 package com.epam.tc.hw6;
 
-import com.epam.tc.hw6.driver.DriverSingletone;
+import com.epam.tc.hw6.driver.DriverFabric;
 import com.epam.tc.hw6.models.User;
 import com.epam.tc.hw6.utils.DtoGenerator;
 import com.epam.tc.hw6.utils.ScreenshotListener;
+import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.List;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 @Log4j2
 @Listeners({ScreenshotListener.class})
@@ -37,17 +41,30 @@ public class BaseTest {
             "Water: condition changed to true"
     );
 
-    @BeforeMethod()
-    public void browserSetup(ITestContext context) {
+    @BeforeClass()
+    @Parameters({"isLocal", "hubAddress", "browserName"})
+    public void setup(@Optional("false") final boolean isLocal, final String hubAddress, final String browserName) {
         log.info("Browser setup");
-        driver = DriverSingletone.getDriver();
-        context.setAttribute("driver", driver);
+        try {
+            driver = new DriverFabric().getWebdriver(isLocal, hubAddress, browserName);
+            driver.manage().window().maximize();
+        } catch (MalformedURLException e) {
+            log.error("A malformed URL has occurred: " + e);
+        }
         loginUser = DtoGenerator.createUser("user.name", "user.password");
+    }
+
+    @BeforeMethod
+    public void setContext(ITestContext context) {
+        context.setAttribute("driver", driver);
     }
 
     @AfterMethod(alwaysRun = true)
     public void browserTearDown() {
         log.info("Closing browser");
-        DriverSingletone.closeDriver();
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
     }
 }

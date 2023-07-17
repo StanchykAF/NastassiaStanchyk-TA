@@ -1,0 +1,11 @@
+[server]
+port = 6666
+
+[node]
+detect-drivers = false
+hub = "http://localhost:4444"
+
+[[node.driver-configuration]]
+display-name = "chrome"
+stereotype = '{"browserName": "chrome"}'
+max-sessions = 3
