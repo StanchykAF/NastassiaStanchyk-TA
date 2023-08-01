@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="API tests" verbose="1" >
+    <test name="API tests"   >
+        <packages>
+            <package name="com.epam.tc.hw8.*" />
+        </packages>
+    </test>
+</suite>
