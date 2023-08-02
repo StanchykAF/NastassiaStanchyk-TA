@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <cucumber.version>7.10.0</cucumber.version>
         <allure-maven.version>2.11.2</allure-maven.version>
         <aspectj.version>1.9.7</aspectj.version>
         <allure-testng.version>2.17.2</allure-testng.version>
@@ -82,6 +83,16 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure-testng.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
         </dependency>
     </dependencies>
 
@@ -200,6 +211,13 @@
             <id>allure</id>
             <properties>
                 <testng.suite.file>${testng.configs.path}/allure.xml</testng.suite.file>
+            </properties>
+        </profile>
+      
+        <profile>
+            <id>cucumber</id>
+            <properties>
+                <testng.suite.file>${testng.configs.path}/cucumber.xml</testng.suite.file>
             </properties>
         </profile>
 
