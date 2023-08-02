@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <rest-assured.version>5.3.1</rest-assured.version>
         <cucumber.version>7.10.0</cucumber.version>
         <allure-maven.version>2.11.2</allure-maven.version>
         <aspectj.version>1.9.7</aspectj.version>
@@ -84,6 +85,7 @@
             <artifactId>allure-testng</artifactId>
             <version>${allure-testng.version}</version>
         </dependency>
+
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
@@ -213,7 +215,7 @@
                 <testng.suite.file>${testng.configs.path}/allure.xml</testng.suite.file>
             </properties>
         </profile>
-      
+
         <profile>
             <id>cucumber</id>
             <properties>
@@ -223,11 +225,18 @@
 
         <profile>
             <id>grid</id>
+            <properties>
+                <testng.suite.file>${testng.configs.path}/grid.xml</testng.suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>api</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <testng.suite.file>${testng.configs.path}/grid.xml</testng.suite.file>
+                <testng.suite.file>${testng.configs.path}/api.xml</testng.suite.file>
             </properties>
         </profile>
     </profiles>
