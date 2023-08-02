@@ -1,0 +1,11 @@
+[server]
+port = 5555
+
+[node]
+detect-drivers = false
+hub = "http://localhost:4444"
+
+[[node.driver-configuration]]
+display-name = "firefox"
+stereotype = '{"browserName": "firefox"}'
+max-sessions = 5

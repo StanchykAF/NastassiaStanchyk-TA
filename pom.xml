@@ -84,7 +84,6 @@
             <artifactId>allure-testng</artifactId>
             <version>${allure-testng.version}</version>
         </dependency>
-
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
@@ -203,9 +202,6 @@
 
         <profile>
             <id>seleniumPageObjects</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <testng.suite.file>${testng.configs.path}/seleniumPageObjects.xml</testng.suite.file>
             </properties>
@@ -217,11 +213,21 @@
                 <testng.suite.file>${testng.configs.path}/allure.xml</testng.suite.file>
             </properties>
         </profile>
-
+      
         <profile>
             <id>cucumber</id>
             <properties>
                 <testng.suite.file>${testng.configs.path}/cucumber.xml</testng.suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>grid</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <testng.suite.file>${testng.configs.path}/grid.xml</testng.suite.file>
             </properties>
         </profile>
     </profiles>
