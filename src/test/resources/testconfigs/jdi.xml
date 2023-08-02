@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="JDI tests" verbose="1" >
+    <test name="JDI tests"   >
+        <packages>
+            <package name="com.epam.tc.hw7.*" />
+        </packages>
+    </test>
+</suite>
