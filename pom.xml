@@ -96,13 +96,6 @@
             <artifactId>cucumber-testng</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>${rest-assured.version}</version>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -227,6 +220,13 @@
             <id>cucumber</id>
             <properties>
                 <testng.suite.file>${testng.configs.path}/cucumber.xml</testng.suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>grid</id>
+            <properties>
+                <testng.suite.file>${testng.configs.path}/grid.xml</testng.suite.file>
             </properties>
         </profile>
 
