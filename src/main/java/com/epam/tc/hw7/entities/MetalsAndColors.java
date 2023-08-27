@@ -4,8 +4,9 @@ import com.jdiai.tools.DataClass;
 
 public class MetalsAndColors extends DataClass<MetalsAndColors> {
 
-    public int summary;
-    public String elementsChecklist;
+    public String odds;
+    public String evens;
+    public String[] elements;
     public String colors;
     public String metals;
     public String vegetables;

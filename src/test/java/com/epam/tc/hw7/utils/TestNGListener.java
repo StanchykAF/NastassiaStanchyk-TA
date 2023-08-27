@@ -24,8 +24,8 @@ public class TestNGListener implements IInvokedMethodListener {
         if (m.isTestMethod()) {
             ITestNGMethod testMethod = m.getTestMethod();
             if (testMethod.getConstructorOrMethod().getMethod().isAnnotationPresent(Test.class)) {
-                TEST_NAME.set( last(testMethod.getTestClass().getName().split("\\.")) +
-                        "." + testMethod.getMethodName());
+                TEST_NAME.set(last(testMethod.getTestClass().getName().split("\\."))
+                        + "." + testMethod.getMethodName());
                 start.set(currentTimeMillis());
                 logger.step("== Test '%s' START ==", TEST_NAME.get());
             }
@@ -42,7 +42,9 @@ public class TestNGListener implements IInvokedMethodListener {
             if ("FAILED".equals(result)) {
                 try {
                     takeScreen();
-                } catch (RuntimeException ignored) { }
+                } catch (RuntimeException ignored) {
+                    ignored.getMessage();
+                }
                 if (tr.getThrowable() != null) {
                     logger.step("ERROR: " + tr.getThrowable().getMessage());
                 } else {
