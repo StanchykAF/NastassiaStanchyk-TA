@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="hw6" parallel="tests">
+    <parameter name="hubAddress" value="http://localhost:4444/wd/hub"/>
+
+    <test name="hw6 chrome">
+        <parameter name="isLocal" value="false"/>
+        <parameter name="browserName" value="chrome"/>
+        <packages>
+            <package name="com.epam.tc.hw6.*" />
+        </packages>
+    </test>
+
+    <test name="hw6 firefox">
+        <parameter name="isLocal" value="false"/>
+        <parameter name="browserName" value="firefox"/>
+        <packages>
+            <package name="com.epam.tc.hw6.*" />
+        </packages>
+    </test>
+</suite>

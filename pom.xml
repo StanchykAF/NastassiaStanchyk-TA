@@ -231,6 +231,13 @@
         </profile>
 
         <profile>
+            <id>grid</id>
+            <properties>
+                <testng.suite.file>${testng.configs.path}/grid.xml</testng.suite.file>
+            </properties>
+        </profile>
+
+        <profile>
             <id>jdi</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
